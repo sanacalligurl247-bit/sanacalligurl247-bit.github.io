@@ -3,20 +3,271 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RingBack Co. — AI visibility + missed-call textback for local home services</title>
+<title>RingBack Co. — Get named by AI. Get every call answered. | San Luis Obispo County</title>
+<style>
+  :root{
+    --ink:#12212e; --ink2:#3c5568; --paper:#f7f5f1; --card:#ffffff;
+    --accent:#e8641c; --accent-dark:#c24e10; --teal:#0e5e63; --line:#ddd6cb;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px}
+  header{background:var(--ink);color:#fff}
+  .bar{display:flex;justify-content:space-between;align-items:center;padding:14px 0;flex-wrap:wrap;gap:8px}
+  .brand{font-size:22px;font-weight:800;letter-spacing:.2px}  .brand span{color:#f2a56b}
+  .bar nav a{color:#dbe6ee;text-decoration:none;margin-left:18px;font-size:15px}
+  .bar nav a:hover{color:#fff;text-decoration:underline}
+  .hero{padding:44px 0 10px}
+  .hero h1{font-size:38px;line-height:1.15;margin:0 0 14px}
+  .hero h1 em{font-style:normal;color:var(--accent-dark)}
+  .hero p.lede{font-size:19px;color:var(--ink2);max-width:640px;margin:0 0 22px}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:8px}  .btn{display:inline-block;background:var(--accent);color:#fff;font-weight:700;font-size:17px;padding:14px 24px;border-radius:10px;text-decoration:none}
+  .btn:hover{background:var(--accent-dark)}
+  .btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+  .btn.ghost:hover{background:var(--ink);color:#fff}
+  .micro{font-size:14px;color:var(--ink2)}
+  .mock{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;max-width:640px;margin:26px 0 8px;box-shadow:0 2px 10px rgba(18,33,46,.06)}
+  .mock .q{font-weight:700;margin-bottom:10px}
+  .mock .a{margin:6px 0;color:var(--ink2)}
+  .mock .miss{margin-top:12px;padding:10px 14px;background:#fdf0e6;border:1px solid #f3cf9f;border-radius:8px;color:#7a3c08;font-weight:600}
+  section{padding:34px 0}
+  h2{font-size:27px;margin:0 0 8px}
+  h3{font-size:19px;margin:0 0 6px}  .sub{color:var(--ink2);max-width:680px;margin:0 0 20px}
+  .demo{background:var(--ink);color:#eef4f8;border-radius:16px;padding:28px}
+  .demo h2{color:#fff}
+  .demo .num{font-size:30px;font-weight:800;letter-spacing:.3px}
+  .demo .num strong{color:#f2a56b}
+  .demo p{color:#c9d8e2}
+  .demo .disc{font-size:13.5px;color:#9fb4c2}
+  .demo a{color:#f2a56b}
+  .proof{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px}
+  .proof .big{font-size:21px;font-weight:700;line-height:1.4}
+  .proof .src{font-size:13.5px;color:var(--ink2);margin-top:10px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card .tag{display:inline-block;background:#e7f2f2;color:var(--teal);font-weight:700;font-size:12.5px;padding:3px 10px;border-radius:999px;margin-bottom:10px;text-transform:uppercase;letter-spacing:.4px}
+  .card p{color:var(--ink2);margin:0}
+  .surge{background:#fdf0e6;border:1px solid #f3cf9f;border-radius:14px;padding:20px 24px}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .step .n{display:inline-block;background:var(--ink);color:#fff;font-weight:800;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;margin-bottom:10px}  .step p{color:var(--ink2);margin:0}
+  ul.checks{list-style:none;padding:0;margin:0}
+  ul.checks li{padding:7px 0 7px 30px;position:relative;border-bottom:1px solid var(--line)}
+  ul.checks li:last-child{border-bottom:none}  ul.checks li:before{content:"✓";position:absolute;left:4px;color:var(--teal);font-weight:800}
+  .faq details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin-bottom:10px}
+  .faq summary{font-weight:700;cursor:pointer}
+  .faq p{color:var(--ink2);margin:8px 0 2px}
+  .quiet{background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:20px 24px;color:var(--ink2)}
+  .promise{background:var(--teal);color:#eafaf8;border-radius:16px;padding:28px}
+  .promise h2{color:#fff}
+  .promise p{color:#cfe8e4;max-width:680px}
+  .promise .nope{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 6px}
+  .promise .nope span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);color:#fff;font-weight:700;padding:7px 14px;border-radius:999px;font-size:15px}
+  footer{background:var(--ink);color:#c9d8e2;padding:26px 0;margin-top:20px;font-size:14.5px}
+  footer a{color:#f2a56b;text-decoration:none}
+  footer a:hover{text-decoration:underline}
+  @media (max-width:600px){.hero h1{font-size:30px}.demo .num{font-size:24px}}
+</style>
 </head>
 <body>
-<h1>RingBack Co.</h1>
-<p>RingBack Co. helps local home-services businesses in San Luis Obispo County get found and get answered.</p>
-<p><strong>Found</strong> — AI visibility audits and ongoing work so your business shows up when customers ask ChatGPT, Gemini, and other AI assistants for a painter, plumber, or HVAC company nearby.</p>
-<p><strong>Answered</strong> — our missed-call textback service, live right now on our own line as a working demo (try it below). When a customer calls and nobody can pick up, they get an immediate text reply and a short conversation that captures what they need, so the lead doesn't go to the next company on the list. Client accounts open as our Found pilots complete.</p>
-<h2>Text us — try the demo</h2>
-<p>Text <strong>TEXTBACK</strong> to <strong>(805) 765-3761</strong> to start a demo conversation with Eve, the AI front desk for RingBack Co.</p>
-<p>By texting TEXTBACK you agree to receive conversational text messages from RingBack Co. about our missed-call textback service. Message frequency varies. Message and data rates may apply. Reply <strong>STOP</strong> to opt out at any time, <strong>HELP</strong> for help. Consent is not a condition of purchase.</p>
-<p>See our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms &amp; Conditions</a> for how data and text messaging are handled.</p>
-<h2>Free checklist: does ChatGPT recommend your business?</h2>
-<p>Before a customer ever calls, AI assistants decide which local companies to name. Our free <strong>AI Visibility Checklist</strong> shows the 9 things ChatGPT, Gemini, and Perplexity look at first — and how to check your own business in about 10 minutes. Free — no card, no obligation.</p>
-<p><a href="https://tally.so/r/BEaDAK">Get the free checklist</a> — answer two quick questions and it opens right on your screen.</p>
-<p>Contact: getringbackco@gmail.com · (805) 765-3761</p>
+
+<header>
+  <div class="wrap bar">
+    <div class="brand">RingBack <span>Co.</span></div>
+    <nav>
+      <a href="#audit">Free Audit</a>
+      <a href="#eve">Meet Eve</a>
+      <a href="#how">How It Works</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>When a homeowner asks AI who to hire, it names two or three businesses. <em>Is yours one of them?</em></h1>    <p class="lede">RingBack Co. helps home-services businesses in San Luis Obispo County get named by ChatGPT, Gemini, and Perplexity — and get every call answered when the phone rings. No sales call. No pitch meeting. Start with a free audit and see exactly where you stand.</p>
+    <div class="cta-row">
+      <a class="btn" href="https://tally.so/r/BEaDAK">See if AI recommends you — free</a>
+      <a class="btn ghost" href="#eve">Or try Eve live ↓</a>
+    </div>
+    <p class="micro">Two quick questions, then the free AI Visibility Checklist opens right on your screen. We run your full audit from there and email you the results — free, no card, no obligation. <strong>No Zoom call, no webinar, no workshop — everything runs by text and email, on your schedule.</strong></p>
+
+    <div class="mock" aria-label="Example of an AI answer">
+      <div class="q">💬 “Who’s the best plumber in San Luis Obispo?”</div>
+      <div class="a">Based on reviews and local listings, top choices include <strong>Competitor #1</strong> (4.8★, 200+ reviews) and <strong>Competitor #2</strong> (4.7★, 150+ reviews)…</div>
+      <div class="miss">Your business — not mentioned. That’s the gap the free audit measures.</div>
+    </div>
+  </div>  <!-- EVE DEMO — A2P evidence section: heading + quoted text kept identical to optin.html -->
+  <section id="eve">
+    <div class="demo">
+      <h2>Text us — try the demo</h2>      <p class="num">Text <strong>TEXTBACK</strong> to <strong>(805) 765-3761</strong></p>
+      <p>Text <strong>TEXTBACK</strong> to <strong>(805) 765-3761</strong> to start a demo conversation with Eve, the AI front desk for RingBack Co. Ask her what a job costs, when someone can come out, anything a customer would ask. She answers in seconds — the same way she’d answer your customers when you can’t pick up the phone. Eve does the talking: there’s no live demo to attend, no meeting to join, nobody performing on camera.</p>
+      <p class="disc">By texting TEXTBACK you agree to receive conversational text messages from RingBack Co. about our missed-call textback service. Message frequency varies. Message and data rates may apply. Reply <strong>STOP</strong> to opt out at any time, <strong>HELP</strong> for help. Consent is not a condition of purchase.</p>
+      <p class="disc">See our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms &amp; Conditions</a> for how data and text messaging are handled.</p>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section>
+    <div class="proof">
+      <div class="big">We ran this test on a real San Luis Obispo County painting company. Across 30 questions homeowners actually ask AI, it was named in only 11 — linked as a source in 7 — and picked first <u>zero</u> times. One competitor was named in 19 of the 30.</div>
+      <p class="src">Our own audit run, November 2026 (a real local company we tested — name withheld). The wider picture agrees: 45% of consumers now use AI tools to find local businesses (BrightLocal, 2026), and ChatGPT recommends just 1.2% of local business locations (SOCi, 2026). Meanwhile about 27% of home-service calls go unanswered, and 85% of callers who hit voicemail never call back (Invoca, 2026).</p>
+    </div>
+  </section>
+  <!-- WHO IT'S FOR -->
+  <section>
+    <h2>Built for the trades SLO County calls first</h2>
+    <p class="sub">If your customers find you in a hurry — or after asking AI who’s best — this is built for you.</p>
+    <div class="grid">
+      <div class="card">
+        <span class="tag">Plumbing</span>
+        <h3>The 9 PM burst-pipe test</h3>
+        <p>Most plumbing jobs are urgent. When a homeowner asks AI who to call, you want to be the name it gives — and when they call while you’re under a house, Eve answers.</p>
+      </div>
+      <div class="card">
+        <span class="tag">HVAC</span>
+        <h3>Big jobs start as AI questions</h3>
+        <p>A new system is a researched purchase, and the research now happens in ChatGPT. Get named for heating and heat-pump work across the county.</p>      </div>
+      <div class="card">
+        <span class="tag">Electrical</span>
+        <h3>Panels · EV chargers · Generators</h3>
+        <p>The fastest-growing electrical work is exactly what homeowners ask AI about. Shops paying $12–$58 a click on ads have the most to gain from being recommended for free.</p>
+      </div>
+    </div>
+    <div style="height:16px"></div>
+    <div class="surge">
+      <h3>🌧 Winter surge: roofing, gutters &amp; water damage</h3>
+      <p style="color:var(--ink2);margin:0">First rain finds every weak roof and every slow leak. When the calls spike for a week, the businesses AI names — and the ones whose phones get answered — take the work. Also serving: painting, garage door, and other home services across SLO County.</p>
+    </div>
+  </section>
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <h2>How it works: Audit → Eve → Buy</h2>
+    <p class="sub">Everything runs online and by text. You never have to sit through a sales call to get any of it.</p>
+    <div class="steps">
+      <div class="step">
+        <span class="n">1</span>
+        <h3>Audit — free</h3>
+        <p>We ask ChatGPT, Gemini, and Perplexity the questions your customers ask — 90 checks — and email you a one-page rundown: where you’re named, where a competitor is named instead, and what’s causing it.</p>
+      </div>
+      <div class="step">
+        <span class="n">2</span>
+        <h3>Basic — get found</h3>
+        <p>We fix what the audit finds: your Google Business Profile, the listings that disagree with each other, and a review system that keeps fresh reviews coming. The unglamorous stuff AI reads before it names anyone.</p>
+      </div>
+      <div class="step">
+        <span class="n">3</span>
+        <h3>Eve — get answered</h3>
+        <p>Add Eve and every missed call gets a text back in seconds. She answers questions, captures what the job is, and alerts you — nights, weekends, and while you’re on another job.</p>
+      </div>
+      <div class="step">
+        <span class="n">4</span>
+        <h3>Monthly — stay named</h3>
+        <p>AI answers change as reviews, listings, and competitors move. Each month we re-run the checks, fix what slipped, and send you the new rundown.</p>
+      </div>
+    </div>
+  </section>
+  <!-- THE NO-MEETING PROMISE -->
+  <section>
+    <div class="promise">
+      <h2>The no-meeting promise</h2>
+      <div class="nope">
+        <span>✗ Sales calls</span>
+        <span>✗ Zoom meetings</span>
+        <span>✗ Webinars</span>
+        <span>✗ Workshops</span>
+        <span>✗ “Strategy sessions”</span>
+      </div>
+      <p>RingBack is built for people who work on ladders and under houses. If getting help meant sitting on a Zoom at 2 PM, it wouldn’t be help. So the whole thing — the audit, the answers, the signup, the setup, the monthly reports — runs by text and email, whenever you have a free minute. Nobody performs live: not us, not Eve, and definitely not you.</p>
+    </div>
+  </section>
+
+  <!-- WHAT'S INCLUDED -->
+  <section id="audit">
+    <h2>What “Basic” includes</h2>
+    <p class="sub">Delivered work, listed plainly. Your free audit shows you the exact price for your business before you pay anything — see the FAQ for why.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>The audit (free)</h3>
+        <ul class="checks">
+          <li>90 AI checks across ChatGPT, Gemini &amp; Perplexity</li>
+          <li>One-page rundown: named, cited, or invisible — question by question</li>
+          <li>“What a buyer would see” — the answers your customers actually get</li>
+          <li>The fix areas, with counts — what’s broken and what it’s costing you</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>The fixes (Basic)</h3>
+        <ul class="checks">
+          <li>Google Business Profile cleaned up and completed</li>
+          <li>Name, address &amp; phone made consistent everywhere</li>
+          <li>Review-ask system set up and running</li>
+          <li>Service wording AI can actually read and quote</li>
+        </ul>
+      </div>
+      <div class="card">        <h3>Eve (add-on)</h3>
+        <ul class="checks">
+          <li>Missed-call textback on your business number</li>
+          <li>Answers customer questions by text, 24/7</li>
+          <li>Captures the job details and alerts you instantly</li>
+          <li>Live on our own line — try her above before you buy</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- FAQ -->
+  <section id="faq" class="faq">
+    <h2>Straight answers</h2>
+    <div style="height:10px"></div>
+    <details>
+      <summary>Do I have to talk to anyone to buy this?</summary>
+      <p>No. The audit, the prices, the signup, and the setup all run online and by text — Eve handles the questions. No Zoom, no webinar, no “strategy session,” no workshop to attend. If you’d rather talk to a person at some point, email us and we’ll set up a time. It’s an option, never a requirement.</p>
+    </details>
+    <details>
+      <summary>How much does it cost?</summary>
+      <p>Run the free audit. Your results show the exact price for your business, before you pay a dime. Why not a price list here? Because the work depends on what the audit finds — a business with a clean profile in a quiet town needs far less than one starting from invisible in a competitive trade, and a flat list would overcharge the first and shortchange the second.</p>
+    </details>
+    <details>
+      <summary>Can you guarantee AI will recommend me?</summary>
+      <p>Nobody honest can guarantee what ChatGPT says — anyone who promises that is selling you something. What we guarantee is the work: the checks run, the fixes done, and a fresh rundown every month showing exactly where you stand. Movement is measured, not promised.</p>
+    </details>
+    <details>
+      <summary>Do you need my passwords?</summary>
+      <p>Never. Google access is granted through a manager invite you control and can revoke any time. No passwords, no shared logins.</p>
+    </details>
+    <details>
+      <summary>Am I locked into a contract?</summary>
+      <p>No long contracts. Monthly service is month-to-month — pause or cancel with short notice. And your website, profiles, and reviews stay yours if you leave. Everything we set up is in your name, not ours.</p>
+    </details>
+    <details>
+      <summary>How fast do I get my audit?</summary>
+      <p>We run the full 90 checks — not a 30-second automated scan — and email your one-pager when it’s done. You’ll also get the free checklist instantly, right on your screen, while you wait.</p>
+    </details>
+    <details>      <summary>Who’s behind RingBack Co.?</summary>
+      <p>A local San Luis Obispo County operator, not a call center and not a national platform. Eve is openly our AI front desk — she never pretends to be a person — and a human reviews every audit before it goes out.</p>
+    </details>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section>
+    <div class="proof" style="text-align:center">
+      <div class="big" style="margin-bottom:14px">Find out what AI says about your business — before your next customer asks.</div>
+      <a class="btn" href="https://tally.so/r/BEaDAK">See if AI recommends you — free</a>
+      <p class="micro" style="margin-top:12px">Or text <strong>TEXTBACK</strong> to <strong>(805) 765-3761</strong> and let Eve show you the other half.</p>
+    </div>
+    <div style="height:16px"></div>
+    <div class="quiet">Rather talk to a person first? Email <a href="mailto:getringbackco@gmail.com">getringbackco@gmail.com</a> and ask for a time — you’ll get one. It’s just not required to get started.</div>
+  </section>
+
+</div>
+
+<footer>  <div class="wrap">
+    <p><strong>RingBack Co.</strong> · San Luis Obispo, CA · <a href="mailto:getringbackco@gmail.com">getringbackco@gmail.com</a> · (805) 765-3761</p>
+    <p><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms &amp; Conditions</a> · <a href="optin.html">How text opt-in works</a> · <a href="checklist.html">The AI Visibility Checklist</a></p>
+  </div>
+</footer>
+
 </body>
 </html>
