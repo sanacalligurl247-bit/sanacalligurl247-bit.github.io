@@ -1,273 +1,1124 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RingBack Co. — Get named by AI. Get every call answered. | San Luis Obispo County</title>
-<style>
-  :root{
-    --ink:#12212e; --ink2:#3c5568; --paper:#f7f5f1; --card:#ffffff;
-    --accent:#e8641c; --accent-dark:#c24e10; --teal:#0e5e63; --line:#ddd6cb;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
-  .wrap{max-width:960px;margin:0 auto;padding:0 20px}
-  header{background:var(--ink);color:#fff}
-  .bar{display:flex;justify-content:space-between;align-items:center;padding:14px 0;flex-wrap:wrap;gap:8px}
-  .brand{font-size:22px;font-weight:800;letter-spacing:.2px}  .brand span{color:#f2a56b}
-  .bar nav a{color:#dbe6ee;text-decoration:none;margin-left:18px;font-size:15px}
-  .bar nav a:hover{color:#fff;text-decoration:underline}
-  .hero{padding:44px 0 10px}
-  .hero h1{font-size:38px;line-height:1.15;margin:0 0 14px}
-  .hero h1 em{font-style:normal;color:var(--accent-dark)}
-  .hero p.lede{font-size:19px;color:var(--ink2);max-width:640px;margin:0 0 22px}
-  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:8px}  .btn{display:inline-block;background:var(--accent);color:#fff;font-weight:700;font-size:17px;padding:14px 24px;border-radius:10px;text-decoration:none}
-  .btn:hover{background:var(--accent-dark)}
-  .btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
-  .btn.ghost:hover{background:var(--ink);color:#fff}
-  .micro{font-size:14px;color:var(--ink2)}
-  .mock{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;max-width:640px;margin:26px 0 8px;box-shadow:0 2px 10px rgba(18,33,46,.06)}
-  .mock .q{font-weight:700;margin-bottom:10px}
-  .mock .a{margin:6px 0;color:var(--ink2)}
-  .mock .miss{margin-top:12px;padding:10px 14px;background:#fdf0e6;border:1px solid #f3cf9f;border-radius:8px;color:#7a3c08;font-weight:600}
-  section{padding:34px 0}
-  h2{font-size:27px;margin:0 0 8px}
-  h3{font-size:19px;margin:0 0 6px}  .sub{color:var(--ink2);max-width:680px;margin:0 0 20px}
-  .demo{background:var(--ink);color:#eef4f8;border-radius:16px;padding:28px}
-  .demo h2{color:#fff}
-  .demo .num{font-size:30px;font-weight:800;letter-spacing:.3px}
-  .demo .num strong{color:#f2a56b}
-  .demo p{color:#c9d8e2}
-  .demo .disc{font-size:13.5px;color:#9fb4c2}
-  .demo a{color:#f2a56b}
-  .proof{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px}
-  .proof .big{font-size:21px;font-weight:700;line-height:1.4}
-  .proof .src{font-size:13.5px;color:var(--ink2);margin-top:10px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
-  .card .tag{display:inline-block;background:#e7f2f2;color:var(--teal);font-weight:700;font-size:12.5px;padding:3px 10px;border-radius:999px;margin-bottom:10px;text-transform:uppercase;letter-spacing:.4px}
-  .card p{color:var(--ink2);margin:0}
-  .surge{background:#fdf0e6;border:1px solid #f3cf9f;border-radius:14px;padding:20px 24px}
-  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
-  .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
-  .step .n{display:inline-block;background:var(--ink);color:#fff;font-weight:800;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;margin-bottom:10px}  .step p{color:var(--ink2);margin:0}
-  ul.checks{list-style:none;padding:0;margin:0}
-  ul.checks li{padding:7px 0 7px 30px;position:relative;border-bottom:1px solid var(--line)}
-  ul.checks li:last-child{border-bottom:none}  ul.checks li:before{content:"✓";position:absolute;left:4px;color:var(--teal);font-weight:800}
-  .faq details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin-bottom:10px}
-  .faq summary{font-weight:700;cursor:pointer}
-  .faq p{color:var(--ink2);margin:8px 0 2px}
-  .quiet{background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:20px 24px;color:var(--ink2)}
-  .promise{background:var(--teal);color:#eafaf8;border-radius:16px;padding:28px}
-  .promise h2{color:#fff}
-  .promise p{color:#cfe8e4;max-width:680px}
-  .promise .nope{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 6px}
-  .promise .nope span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);color:#fff;font-weight:700;padding:7px 14px;border-radius:999px;font-size:15px}
-  footer{background:var(--ink);color:#c9d8e2;padding:26px 0;margin-top:20px;font-size:14.5px}
-  footer a{color:#f2a56b;text-decoration:none}
-  footer a:hover{text-decoration:underline}
-  @media (max-width:600px){.hero h1{font-size:30px}.demo .num{font-size:24px}}
-</style>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="assets/logo.webp" />
+    <meta name="description" content="RingBack Co. — Found & Bookable. Based in San Luis Obispo, CA, we make home-service shops the ones Google's AI picks, and bookable when it does — wherever the shop is." />
+    <title>RingBack Co. — Found &amp; Bookable</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root{
+        --bg:#f4f7f6;
+        --surface:#ffffff;
+        --surface-2:#e6efec;
+        --ink:#152420;
+        --ink-soft:#4c5f5a;
+        --line:#c9dbd5;
+        --accent:#0d6b62;
+        --accent-bright:#09564f;
+        --accent-ink:#ffffff;
+        --gold:#8a6400;
+        --gold-bright:#d9a41b;
+        --ok:#22713c;   --ok-bg:#e1efe3;
+        --warn:#8a5a00; --warn-bg:#f6ecd2;
+        --bad:#a02c1d;  --bad-bg:#f9e2db;
+        --phone:#0b1f1b;
+        --shadow:0 18px 40px rgba(21,36,32,.15);
+        --radius:14px;
+        --font-body:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+        --font-display:"Archivo",system-ui,sans-serif;
+        --font-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+      }
+      @media (prefers-color-scheme: dark){
+        :root{
+          --bg:#0c1614;
+          --surface:#14231f;
+          --surface-2:#1c2f2a;
+          --ink:#edf4f1;
+          --ink-soft:#a7bcb4;
+          --line:#2b453e;
+          --accent:#3abaa9;
+          --accent-bright:#57cdbd;
+          --accent-ink:#03211c;
+          --gold:#eec44f;
+          --gold-bright:#d9a41b;
+          --ok:#8fce7f;   --ok-bg:#22331f;
+          --warn:#eec27a; --warn-bg:#3a2f16;
+          --bad:#f0927e;  --bad-bg:#3d211a;
+          --phone:#050d0b;
+          --shadow:0 18px 40px rgba(0,0,0,.5);
+        }
+      }
+      *{box-sizing:border-box}
+      html{scroll-behavior:smooth}
+      body{
+        margin:0;background:var(--bg);color:var(--ink);
+        font-family:var(--font-body);font-size:17px;line-height:1.6;
+        -webkit-font-smoothing:antialiased;
+      }
+      img{max-width:100%;display:block}
+      a{color:var(--accent)}
+      .wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+      h1,h2,h3{font-family:var(--font-display);font-weight:800;line-height:1.12;margin:0;letter-spacing:0}
+      .wordmark,.hero-stats .num,.stat-card .big,.calc-out .big,.calc-result .v,.rung .price .amt,.verdict .v-title,.avatar,.demo-line .num,footer.site .brand{font-weight:800}
+      h2{font-size:clamp(28px,4.4vw,42px)}
+      h3{font-size:20px}
+      p{margin:0}
+      .mono{font-family:var(--font-mono)}
+      .kicker{
+        font-family:var(--font-mono);font-size:12.5px;font-weight:600;
+        letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+        margin:0 0 14px;
+      }
+      section{padding:64px 0}
+      .section-head{max-width:720px;margin-bottom:34px}
+      .section-head p.lede{margin-top:14px;color:var(--ink-soft);font-size:18px}
 
-<header>
-  <div class="wrap bar">
-    <div class="brand">RingBack <span>Co.</span></div>
-    <nav>
-      <a href="#audit">Free Audit</a>
-      <a href="#eve">Meet Eve</a>
-      <a href="#how">How It Works</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-  </div>
-</header>
+      /* ---------- nav ---------- */
+      header.site{
+        position:sticky;top:0;z-index:50;background:var(--bg);
+        border-bottom:1px solid var(--line);
+      }
+      .nav{display:flex;align-items:center;gap:22px;padding:13px 0}
+      .wordmark{font-family:var(--font-display);font-size:21px;color:var(--ink);text-decoration:none;letter-spacing:.2px;display:flex;align-items:center;gap:10px;white-space:nowrap;flex:none}
+      @media (max-width:1120px){ .nav{gap:14px} .nav nav{gap:13px} .nav nav a{font-size:14px} }
+      .wordmark .co{color:var(--gold)}
+      .wordmark img,.brand-logo{width:38px;height:38px;border-radius:50%;object-fit:cover;flex:none;display:block}
+      .brand-panel{display:flex;gap:22px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin-top:18px}
+      .brand-panel img{width:104px;height:104px;border-radius:50%;object-fit:cover;flex:none}
+      .brand-panel h3{margin-bottom:6px}
+      .brand-panel p{color:var(--ink-soft);font-size:15.5px}
+      @media (max-width:640px){ .brand-panel{flex-direction:column;align-items:flex-start} }
+      .nav nav{display:flex;gap:20px;margin-left:auto}
+      .nav nav a{color:var(--ink-soft);text-decoration:none;font-weight:600;font-size:15px}
+      .nav nav a:hover{color:var(--ink)}
+      .btn{
+        display:inline-block;background:var(--accent);color:var(--accent-ink);
+        font-weight:700;text-decoration:none;border:none;cursor:pointer;
+        padding:12px 22px;border-radius:10px;font-size:16px;font-family:var(--font-body);
+        transition:transform .15s ease, background .15s ease;
+      }
+      .btn:hover{background:var(--accent-bright)}
+      .btn:active{transform:scale(.98)}
+      .btn.small{padding:9px 16px;font-size:15px}
+      .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+      .btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+      @media (max-width:640px){
+        .nav{flex-wrap:wrap;gap:10px 14px}
+        .nav nav{display:flex;order:3;flex-basis:100%;margin-left:0;flex-wrap:wrap;gap:8px 18px}
+        .nav nav a{font-size:14.5px}
+        .nav .btn{margin-left:auto}
+        .wordmark img{width:38px;height:38px}
+      }
 
-<div class="wrap">
+      /* ---------- hero ---------- */
+      .hero{padding:58px 0 30px}
+      .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:44px;align-items:start}
+      @media (max-width:900px){ .hero-grid{grid-template-columns:1fr} }
+      .hero h1{font-size:clamp(34px,5.6vw,58px)}
+      .hero h1 .hl{color:var(--accent)}
+      .hero .lede{margin-top:20px;font-size:19px;color:var(--ink-soft);max-width:34em}
+      .hero .lede strong{color:var(--ink)}
+      .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;align-items:center}
+      .cta-note{font-size:14.5px;color:var(--ink-soft)}
+      .hero-stats{display:flex;gap:0;margin-top:36px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);overflow:hidden}
+      .hero-stats div{flex:1;padding:16px 18px}
+      .hero-stats div + div{border-left:1px solid var(--line)}
+      .hero-stats .num{font-family:var(--font-display);font-size:26px;display:block}
+      .hero-stats .lbl{font-size:13.5px;color:var(--ink-soft);display:block;margin-top:2px;line-height:1.4}
+      @media (max-width:640px){ .hero-stats{flex-direction:column} .hero-stats div + div{border-left:none;border-top:1px solid var(--line)} }
 
-  <!-- HERO -->
-  <div class="hero">
-    <h1>When a homeowner asks AI who to hire, it names two or three businesses. <em>Is yours one of them?</em></h1>    <p class="lede">RingBack Co. helps home-services businesses in San Luis Obispo County get named by ChatGPT, Gemini, and Perplexity — and get every call answered when the phone rings. No sales call. No pitch meeting. Start with a free audit and see exactly where you stand.</p>
-    <div class="cta-row">
-      <a class="btn" href="https://tally.so/r/BEaDAK">See if AI recommends you — free</a>
-      <a class="btn ghost" href="#eve">Or try Eve live ↓</a>
-    </div>
-    <p class="micro">Two quick questions, then the free AI Visibility Checklist opens right on your screen. We run your full audit from there and email you the results — free, no card, no obligation. <strong>No Zoom call, no webinar, no workshop — everything runs by text and email, on your schedule.</strong></p>
+      /* ---------- demo panel ---------- */
+      .demo{
+        background:var(--surface);border:1px solid var(--line);border-radius:18px;
+        box-shadow:var(--shadow);padding:20px;
+      }
+      .demo-top{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+      .demo-top .dot{width:10px;height:10px;border-radius:50%;background:var(--line)}
+      .demo-top .addr{
+        margin-left:8px;font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft);
+        background:var(--surface-2);border-radius:999px;padding:4px 12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+      }
+      .demo-query{
+        border:1.5px solid var(--line);border-radius:999px;padding:10px 18px;
+        font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:10px;
+      }
+      .demo-query .mic{color:var(--accent);font-family:var(--font-mono);font-size:13px}
+      .ai-label{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:18px 0 8px}
+      .ai-answer{font-size:15.5px;color:var(--ink-soft)}
+      .ai-answer strong{color:var(--ink)}
+      .toggle{display:flex;background:var(--surface-2);border-radius:999px;padding:4px;margin:18px 0 6px}
+      .toggle button{
+        flex:1;border:none;background:transparent;cursor:pointer;padding:9px 10px;border-radius:999px;
+        font-family:var(--font-body);font-weight:700;font-size:14.5px;color:var(--ink-soft);
+      }
+      .toggle button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+      .shop-row{
+        display:flex;align-items:center;gap:14px;padding:14px 4px;border-top:1px solid var(--line);
+      }
+      .shop-row:first-of-type{border-top:none}
+      .avatar{
+        width:44px;height:44px;border-radius:12px;flex:none;display:flex;align-items:center;justify-content:center;
+        font-family:var(--font-display);font-size:17px;background:var(--surface-2);color:var(--ink);
+      }
+      .avatar.you{background:var(--accent);color:var(--accent-ink)}
+      .shop-meta{flex:1;min-width:0}
+      .shop-meta .name{font-weight:700;font-size:16px}
+      .shop-meta .sub{font-size:13.5px;color:var(--ink-soft);line-height:1.45}
+      .stars{color:var(--gold);letter-spacing:1px;font-size:13px}
+      .book-btn{
+        flex:none;background:var(--accent);color:var(--accent-ink);border:none;border-radius:999px;
+        font-weight:700;font-size:14.5px;padding:9px 18px;cursor:default;font-family:var(--font-body);
+      }
+      .dead-end{
+        flex:none;font-family:var(--font-mono);font-size:12px;color:var(--bad);
+        border:1px dashed var(--bad);border-radius:999px;padding:7px 12px;text-align:center;
+      }
+      .demo-foot{font-size:13px;color:var(--ink-soft);margin-top:12px;border-top:1px dashed var(--line);padding-top:12px}
+      .hidden{display:none !important}
 
-    <div class="mock" aria-label="Example of an AI answer">
-      <div class="q">💬 “Who’s the best plumber in San Luis Obispo?”</div>
-      <div class="a">Based on reviews and local listings, top choices include <strong>Competitor #1</strong> (4.8★, 200+ reviews) and <strong>Competitor #2</strong> (4.7★, 150+ reviews)…</div>
-      <div class="miss">Your business — not mentioned. That’s the gap the free audit measures.</div>
-    </div>
-  </div>  <!-- EVE DEMO — A2P evidence section: heading + quoted text kept identical to optin.html -->
-  <section id="eve">
-    <div class="demo">
-      <h2>Text us — try the demo</h2>      <p class="num">Text <strong>TEXTBACK</strong> to <strong>(805) 765-3761</strong></p>
-      <p>Text <strong>TEXTBACK</strong> to <strong>(805) 765-3761</strong> to start a demo conversation with Eve, the AI front desk for RingBack Co. Ask her what a job costs, when someone can come out, anything a customer would ask. She answers in seconds — the same way she’d answer your customers when you can’t pick up the phone. Eve does the talking: there’s no live demo to attend, no meeting to join, nobody performing on camera.</p>
-      <p class="disc">By texting TEXTBACK you agree to receive conversational text messages from RingBack Co. about our missed-call textback service. Message frequency varies. Message and data rates may apply. Reply <strong>STOP</strong> to opt out at any time, <strong>HELP</strong> for help. Consent is not a condition of purchase.</p>
-      <p class="disc">See our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms &amp; Conditions</a> for how data and text messaging are handled.</p>
-    </div>
-  </section>
+      /* ---------- new badge (flashing) ---------- */
+      .new-badge{
+        display:inline-block;vertical-align:2px;margin-right:10px;
+        font-family:var(--font-display);font-weight:800;font-size:13px;letter-spacing:.14em;
+        background:var(--gold-bright);color:#241a00;
+        padding:5px 12px 4px;border-radius:999px;
+        box-shadow:0 0 0 0 rgba(217,164,27,.55);
+        animation:new-flash 1s ease-in-out infinite;
+      }
+      @keyframes new-flash{
+        0%,100%{opacity:1;transform:scale(1);box-shadow:0 0 0 0 rgba(217,164,27,.55)}
+        50%{opacity:.35;transform:scale(1.12);box-shadow:0 0 0 9px rgba(217,164,27,0)}
+      }
+      @media (prefers-reduced-motion: reduce){
+        .new-badge{animation:none}
+      }
 
-  <!-- PROOF -->
-  <section>
-    <div class="proof">
-      <div class="big">We ran this test on a real San Luis Obispo County painting company. Across 30 questions homeowners actually ask AI, it was named in only 11 — linked as a source in 7 — and picked first <u>zero</u> times. One competitor was named in 19 of the 30.</div>
-      <p class="src">Our own audit run, November 2026 (a real local company we tested — name withheld). The wider picture agrees: 45% of consumers now use AI tools to find local businesses (BrightLocal, 2026), and ChatGPT recommends just 1.2% of local business locations (SOCi, 2026). Meanwhile about 27% of home-service calls go unanswered, and 85% of callers who hit voicemail never call back (Invoca, 2026).</p>
-    </div>
-  </section>
-  <!-- WHO IT'S FOR -->
-  <section>
-    <h2>Built for the trades SLO County calls first</h2>
-    <p class="sub">If your customers find you in a hurry — or after asking AI who’s best — this is built for you.</p>
-    <div class="grid">
-      <div class="card">
-        <span class="tag">Plumbing</span>
-        <h3>The 9 PM burst-pipe test</h3>
-        <p>Most plumbing jobs are urgent. When a homeowner asks AI who to call, you want to be the name it gives — and when they call while you’re under a house, Eve answers.</p>
-      </div>
-      <div class="card">
-        <span class="tag">HVAC</span>
-        <h3>Big jobs start as AI questions</h3>
-        <p>A new system is a researched purchase, and the research now happens in ChatGPT. Get named for heating and heat-pump work across the county.</p>      </div>
-      <div class="card">
-        <span class="tag">Electrical</span>
-        <h3>Panels · EV chargers · Generators</h3>
-        <p>The fastest-growing electrical work is exactly what homeowners ask AI about. Shops paying $12–$58 a click on ads have the most to gain from being recommended for free.</p>
-      </div>
-    </div>
-    <div style="height:16px"></div>
-    <div class="surge">
-      <h3>🌧 Winter surge: roofing, gutters &amp; water damage</h3>
-      <p style="color:var(--ink2);margin:0">First rain finds every weak roof and every slow leak. When the calls spike for a week, the businesses AI names — and the ones whose phones get answered — take the work. Also serving: painting, garage door, and other home services across SLO County.</p>
-    </div>
-  </section>
-  <!-- HOW IT WORKS -->
-  <section id="how">
-    <h2>How it works: Audit → Eve → Buy</h2>
-    <p class="sub">Everything runs online and by text. You never have to sit through a sales call to get any of it.</p>
-    <div class="steps">
-      <div class="step">
-        <span class="n">1</span>
-        <h3>Audit — free</h3>
-        <p>We ask ChatGPT, Gemini, and Perplexity the questions your customers ask — 90 checks — and email you a one-page rundown: where you’re named, where a competitor is named instead, and what’s causing it.</p>
-      </div>
-      <div class="step">
-        <span class="n">2</span>
-        <h3>Basic — get found</h3>
-        <p>We fix what the audit finds: your Google Business Profile, the listings that disagree with each other, and a review system that keeps fresh reviews coming. The unglamorous stuff AI reads before it names anyone.</p>
-      </div>
-      <div class="step">
-        <span class="n">3</span>
-        <h3>Eve — get answered</h3>
-        <p>Add Eve and every missed call gets a text back in seconds. She answers questions, captures what the job is, and alerts you — nights, weekends, and while you’re on another job.</p>
-      </div>
-      <div class="step">
-        <span class="n">4</span>
-        <h3>Monthly — stay named</h3>
-        <p>AI answers change as reviews, listings, and competitors move. Each month we re-run the checks, fix what slipped, and send you the new rundown.</p>
-      </div>
-    </div>
-  </section>
-  <!-- THE NO-MEETING PROMISE -->
-  <section>
-    <div class="promise">
-      <h2>The no-meeting promise</h2>
-      <div class="nope">
-        <span>✗ Sales calls</span>
-        <span>✗ Zoom meetings</span>
-        <span>✗ Webinars</span>
-        <span>✗ Workshops</span>
-        <span>✗ “Strategy sessions”</span>
-      </div>
-      <p>RingBack is built for people who work on ladders and under houses. If getting help meant sitting on a Zoom at 2 PM, it wouldn’t be help. So the whole thing — the audit, the answers, the signup, the setup, the monthly reports — runs by text and email, whenever you have a free minute. Nobody performs live: not us, not Eve, and definitely not you.</p>
-    </div>
-  </section>
+      /* ---------- chips ---------- */
+      .chip{
+        display:inline-flex;align-items:center;gap:7px;font-family:var(--font-mono);
+        font-size:12px;font-weight:600;letter-spacing:.04em;padding:5px 11px;border-radius:999px;white-space:nowrap;
+      }
+      .chip::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+      .chip.ok{background:var(--ok-bg);color:var(--ok)}
+      .chip.warn{background:var(--warn-bg);color:var(--warn)}
+      .chip.bad{background:var(--bad-bg);color:var(--bad)}
 
-  <!-- WHAT'S INCLUDED -->
-  <section id="audit">
-    <h2>What “Basic” includes</h2>
-    <p class="sub">Delivered work, listed plainly. Your free audit shows you the exact price for your business before you pay anything — see the FAQ for why.</p>
-    <div class="grid">
-      <div class="card">
-        <h3>The audit (free)</h3>
-        <ul class="checks">
-          <li>90 AI checks across ChatGPT, Gemini &amp; Perplexity</li>
-          <li>One-page rundown: named, cited, or invisible — question by question</li>
-          <li>“What a buyer would see” — the answers your customers actually get</li>
-          <li>The fix areas, with counts — what’s broken and what it’s costing you</li>
-        </ul>
+      /* ---------- trades ---------- */
+      .trades{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+      @media (max-width:820px){ .trades{grid-template-columns:1fr} }
+      .trade{margin:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+      .trade img{width:100%;aspect-ratio:4/3;object-fit:cover}
+      .trade figcaption{padding:16px 18px}
+      .trade figcaption .t{font-family:var(--font-display);font-size:18px;display:block;margin-bottom:4px}
+      .trade figcaption p{font-size:15px;color:var(--ink-soft)}
+
+      /* ---------- checker ---------- */
+      .checker-band{background:var(--surface-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+      .checker{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+      @media (max-width:900px){ .checker{grid-template-columns:1fr} }
+      .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+      .field{margin-bottom:18px}
+      .field label{display:block;font-weight:700;font-size:15px;margin-bottom:7px}
+      .field .hint{font-weight:400;color:var(--ink-soft);font-size:13.5px;display:block;margin-top:2px}
+      .field select,.field input[type="text"]{
+        width:100%;padding:11px 13px;font-size:16px;font-family:var(--font-body);
+        background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:10px;
+      }
+      .field select:focus,.field input:focus{outline:2px solid var(--accent);outline-offset:1px}
+      .result-row{
+        display:flex;justify-content:space-between;align-items:center;gap:14px;
+        padding:13px 0;border-top:1px solid var(--line);
+      }
+      .result-row:first-child{border-top:none;padding-top:2px}
+      .result-row .q{font-weight:600;font-size:15.5px}
+      .result-row .why{display:block;font-weight:400;font-size:13.5px;color:var(--ink-soft)}
+      .verdict{
+        margin-top:16px;border-radius:10px;padding:16px 18px;background:var(--surface-2);
+        font-size:16px;
+      }
+      .verdict .v-title{font-family:var(--font-display);font-size:19px;display:block;margin-bottom:4px}
+      .scanning{font-family:var(--font-mono);font-size:14px;color:var(--ink-soft)}
+      .scanning .cursor{display:inline-block;width:9px;height:15px;background:var(--accent);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+      @keyframes blink{50%{opacity:0}}
+      @media (prefers-reduced-motion: reduce){
+        html{scroll-behavior:auto}
+        .scanning .cursor{animation:none}
+        *{transition:none !important}
+      }
+
+      /* ---------- eve ---------- */
+      .eve-grid{display:grid;grid-template-columns:1fr 370px;gap:46px;align-items:start}
+      @media (max-width:900px){ .eve-grid{grid-template-columns:1fr} .phone{margin:0 auto} }
+      .step{display:flex;gap:16px;padding:18px 0;border-top:1px solid var(--line)}
+      .step:first-of-type{border-top:none}
+      .step .n{
+        font-family:var(--font-mono);font-weight:600;font-size:14px;flex:none;
+        width:34px;height:34px;border-radius:50%;border:1.5px solid var(--accent);color:var(--accent);
+        display:flex;align-items:center;justify-content:center;
+      }
+      .step h3{font-size:17.5px;margin-bottom:3px}
+      .step p{color:var(--ink-soft);font-size:15.5px}
+      .phone{
+        background:var(--phone);border-radius:38px;padding:11px;max-width:370px;width:100%;
+        box-shadow:var(--shadow);
+      }
+      .phone-screen{background:var(--surface);border-radius:28px;padding:18px 14px 20px;display:flex;flex-direction:column;gap:8px}
+      .phone-head{
+        text-align:center;border-bottom:1px solid var(--line);padding-bottom:11px;margin-bottom:4px;
+      }
+      .phone-head .who{font-weight:800;font-size:15px}
+      .phone-head .sub{font-family:var(--font-mono);font-size:11.5px;color:var(--ok);letter-spacing:.05em}
+      .sysline{text-align:center;font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);padding:2px 8px}
+      .msg{max-width:84%;padding:9px 13px;border-radius:17px;font-size:14px;line-height:1.5}
+      .msg.eve{background:var(--surface-2);align-self:flex-start;border-bottom-left-radius:5px}
+      .msg.cust{background:var(--accent);color:var(--accent-ink);align-self:flex-end;border-bottom-right-radius:5px}
+      .owner-note{
+        margin-top:14px;background:var(--surface);border:1px dashed var(--accent);border-radius:var(--radius);
+        padding:16px 18px;font-size:15px;
+      }
+      .owner-note .t{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:5px}
+
+      /* ---------- calculator ---------- */
+      .calc{margin-top:38px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+      .calc h3{margin-bottom:6px}
+      .calc .sub{color:var(--ink-soft);font-size:15px;margin-bottom:20px}
+      .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+      @media (max-width:760px){ .calc-grid{grid-template-columns:1fr} }
+      .calc label{font-weight:700;font-size:15px;display:flex;justify-content:space-between;align-items:baseline}
+      .calc label output{font-family:var(--font-mono);font-size:15px;color:var(--accent);font-weight:600}
+      .calc input[type="range"]{width:100%;accent-color:var(--accent);margin-top:10px;height:28px}
+      .calc-out{display:flex;flex-direction:column;justify-content:center;gap:10px}
+      .calc-out .big{font-family:var(--font-display);font-size:clamp(24px,3.4vw,32px);line-height:1.2}
+      .calc-out .big .money{color:var(--accent)}
+      .calc-out p{font-size:14.5px;color:var(--ink-soft)}
+
+      /* ---------- ladder ---------- */
+      .rung{
+        display:grid;grid-template-columns:190px 1fr auto;gap:8px 28px;align-items:start;
+        padding:26px 0;border-top:1px solid var(--line);
+      }
+      .rung:first-of-type{border-top:none}
+      .rung .step-lbl{font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);padding-top:6px}
+      .rung h3{font-size:22px;margin-bottom:5px}
+      .rung .desc{color:var(--ink-soft);font-size:16px;max-width:36em}
+      .rung .note{font-size:14px;color:var(--accent);font-weight:600;margin-top:6px}
+      .rung .price{text-align:right}
+      .rung .price .amt{font-family:var(--font-display);font-size:30px;display:block;line-height:1}
+      .rung .price .per{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft)}
+      @media (max-width:760px){
+        .rung{grid-template-columns:1fr auto}
+        .rung .step-lbl{grid-column:1 / -1;padding-top:0}
+        .rung .price .amt{font-size:24px}
+      }
+      .plan-b{
+        margin-top:8px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+        padding:18px 22px;font-size:15.5px;color:var(--ink-soft);
+      }
+      .plan-b strong{color:var(--ink)}
+
+      /* ---------- foundation trio ---------- */
+      .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+      @media (max-width:820px){ .trio{grid-template-columns:1fr} }
+      .piece{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+      .piece .n{font-family:var(--font-mono);font-size:13px;color:var(--accent);font-weight:600;letter-spacing:.1em}
+      .piece h3{margin:10px 0 8px;font-size:19px}
+      .piece p{color:var(--ink-soft);font-size:15.5px}
+
+      /* ---------- faq ---------- */
+      .faq{max-width:760px}
+      details{border-top:1px solid var(--line);padding:6px 0}
+      details:last-child{border-bottom:1px solid var(--line)}
+      summary{
+        cursor:pointer;font-weight:700;font-size:17.5px;padding:14px 0;list-style:none;
+        display:flex;justify-content:space-between;gap:16px;align-items:baseline;
+      }
+      summary::-webkit-details-marker{display:none}
+      summary::after{content:"+";font-family:var(--font-mono);color:var(--accent);font-size:20px;flex:none}
+      details[open ] summary::after{content:"–"}
+      details p{color:var(--ink-soft);padding:0 0 18px;max-width:42em}
+
+      /* ---------- footer ---------- */
+      footer.site{padding:34px 0 44px;font-size:14.5px;color:var(--ink-soft)}
+      footer.site .frow{display:flex;flex-wrap:wrap;gap:8px 26px;align-items:baseline}
+      footer.site .brand{font-family:var(--font-display);color:var(--ink);font-size:16px}
+      footer.site a{color:var(--ink-soft)}
+      .draft-line{margin-top:14px;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em}
+
+      /* ---------- live demo strip (high on the page) ---------- */
+      .demo-strip{
+        background:var(--phone);color:#eef5f2;border-radius:18px;padding:28px 30px;
+        display:flex;flex-wrap:wrap;align-items:center;gap:18px 34px;
+        border-top:5px solid var(--gold-bright);box-shadow:var(--shadow);
+      }
+      .demo-strip .lbl{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:#d9c98a;display:block;margin-bottom:6px}
+      .demo-strip .num{font-family:var(--font-display);font-weight:800;font-size:clamp(27px,4vw,38px);line-height:1.1}
+      .demo-strip .num a{color:var(--gold-bright);text-decoration:none}
+      .demo-strip .num a:hover{text-decoration:underline}
+      .demo-strip p{flex:1;min-width:260px;font-size:15.5px;color:rgba(238,245,242,.82);max-width:38em}
+      .demo-strip .call-btn{
+        flex:none;background:var(--gold-bright);color:#241a00;font-weight:800;text-decoration:none;
+        padding:13px 24px;border-radius:10px;font-size:16px;
+      }
+      .demo-strip .call-btn:hover{background:#e9bc45}
+
+      /* ---------- reveal (only hidden when JS marks the page anim-ready) ---------- */
+      .anim .reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+      .anim .reveal.in{opacity:1;transform:none}
+      @media (prefers-reduced-motion: reduce){ .anim .reveal{opacity:1;transform:none;transition:none} }
+
+      .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+      @media (max-width:900px){ .stats-grid{grid-template-columns:1fr 1fr} }
+      @media (max-width:520px){ .stats-grid{grid-template-columns:1fr} }
+      .stat-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+      .stat-card .big{font-family:var(--font-display);font-size:30px;line-height:1.1;display:block}
+      .stat-card .lbl{font-size:14.5px;color:var(--ink-soft);display:block;margin-top:6px;line-height:1.5}
+      .honest-box{margin-top:18px;background:var(--surface);border:1.5px dashed var(--accent);border-radius:var(--radius);padding:20px 22px}
+      .honest-box .t{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:6px}
+      .honest-box p{font-size:15.5px;color:var(--ink-soft)}
+      .honest-box p strong{color:var(--ink)}
+      .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+      @media (max-width:820px){ .testi-grid{grid-template-columns:1fr} }
+      .testi-card{background:var(--surface);border:1.5px dashed var(--line);border-radius:var(--radius);padding:26px}
+      .testi-card .slots{font-family:var(--font-mono);font-size:13px;color:var(--accent);letter-spacing:.04em;display:block;margin-bottom:12px}
+      .testi-card .quote{font-size:17px;line-height:1.55;color:var(--ink-soft);font-style:italic}
+      .testi-card .note{margin-top:14px;font-size:13.5px;color:var(--ink-soft)}
+      .pilot-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+      @media (max-width:900px){ .pilot-grid{grid-template-columns:1fr} }
+      .demo-line{background:var(--ink);color:var(--bg);border-radius:var(--radius);padding:28px}
+      .demo-line .num{font-family:var(--font-display);font-size:clamp(28px,4vw,38px);display:block;margin:8px 0}
+      .demo-line p{opacity:.85;font-size:15.5px}
+      .demo-line a{color:var(--bg)}
+      .promise-band{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px}
+      .promise-band span{font-family:var(--font-mono);font-size:12.5px;font-weight:600;letter-spacing:.05em;border:1.5px solid var(--ink);border-radius:999px;padding:7px 14px}
+      .onboard-list{list-style:none;margin:16px 0 0;padding:0}
+      .onboard-list li{padding:12px 0;border-top:1px solid var(--line);font-size:15.5px;color:var(--ink-soft)}
+      .onboard-list li strong{color:var(--ink)}
+      .onboard-list li:first-child{border-top:none}
+      .calc-formula{font-family:var(--font-mono);font-size:13.5px;background:var(--surface-2);border-radius:10px;padding:14px 16px;line-height:1.6;margin-top:18px}
+      .calc-estimate-note{margin-top:16px;border:1.5px solid var(--accent);border-radius:10px;padding:13px 16px;font-size:15px;background:var(--surface)}
+      .calc-estimate-note .t{font-family:var(--font-mono);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:3px}
+      .calc-results{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:18px}
+      @media (max-width:640px){ .calc-results{grid-template-columns:1fr} }
+      .calc-result{background:var(--surface-2);border-radius:10px;padding:16px}
+      .calc-result .v{font-family:var(--font-display);font-size:24px;display:block;line-height:1.15}
+      .calc-result .k{font-size:13.5px;color:var(--ink-soft);display:block;margin-top:4px}
+      .calc input[type="number"]{width:100%;padding:11px 13px;font-size:16px;font-family:var(--font-body);background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:10px;margin-top:6px}
+      .vs-links{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+      .vs-links a{font-weight:600}
+    </style>
+    <script>document.documentElement.classList.add("anim");</script>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap nav">
+        <a class="wordmark" href="#top"><img src="assets/logo.webp" alt="RingBack Co. logo — a white R and telephone handset on a teal circle" width="38" height="38" /><span>RingBack <span class="co">Co.</span></span></a>
+        <nav aria-label="Sections">
+          <a href="#check">The free check</a>
+          <a href="#eve">Meet Eve</a>
+          <a href="#offers">How it works</a>
+          <a href="#faq">Questions</a>
+        </nav>
+        <a class="btn small" href="https://tally.so/r/BEaDAK" target="_blank" rel="noopener">Get the free check</a>
       </div>
-      <div class="card">
-        <h3>The fixes (Basic)</h3>
-        <ul class="checks">
-          <li>Google Business Profile cleaned up and completed</li>
-          <li>Name, address &amp; phone made consistent everywhere</li>
-          <li>Review-ask system set up and running</li>
-          <li>Service wording AI can actually read and quote</li>
-        </ul>
+    </header>
+
+    <main id="top">
+      <!-- ============ HERO ============ -->
+      <div class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <p class="kicker">Painters · Plumbers · HVAC · Based in San Luis Obispo, CA — working with shops anywhere</p>
+            <h1>Google can book your competitor <span class="hl">straight from the answer.</span> It can&rsquo;t book you.</h1>
+            <p class="lede">Ask Google&rsquo;s AI for a plumber, a painter, an HVAC tech, and it doesn&rsquo;t hand over a list of websites anymore. <strong>It names a shop — and offers to book the job on the spot.</strong> RingBack makes sure the shop it names is yours, and that the booking actually goes through.</p>
+            <div class="cta-row">
+              <a class="btn" href="https://tally.so/r/BEaDAK" target="_blank" rel="noopener">Check my shop — free</a>
+              <a class="btn ghost" href="#eve">See how Eve books jobs</a>
+            </div>
+            <p class="cta-note" style="margin-top:14px">The check is one page, by email — we run it by hand, and it usually takes us about a day, sometimes a little longer when requests pile up. No pitch call unless you ask for one. San Luis Obispo is home base, not a service boundary — if your shop is somewhere else, you&rsquo;re just as welcome.</p>
+            <div class="hero-stats">
+              <div>
+                <span class="num">Usually seconds</span>
+                <span class="lbl">Eve usually texts back as soon as a call rings out — before the caller dials the next shop</span>
+              </div>
+              <div>
+                <span class="num">2 + 1 checks</span>
+                <span class="lbl">does Google&rsquo;s AI name you, can it book you — and is your ChatGPT profile claimed?</span>
+              </div>
+              <div>
+                <span class="num">Free</span>
+                <span class="lbl">to find out where your shop stands — the Found &amp; Bookable check costs nothing</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo" aria-label="Illustration of a Google AI answer, before and after RingBack">
+            <div class="demo-top">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="addr">google.com</span>
+            </div>
+            <div class="demo-query"><span>&ldquo;best hvac company near me that can come this week&rdquo;</span><span class="mic">AI</span></div>
+            <p class="ai-label">AI Overview</p>
+
+            <div class="toggle" role="group" aria-label="Compare before and after">
+              <button type="button" id="btn-today" aria-pressed="true">Your shop today</button>
+              <button type="button" id="btn-ringback" aria-pressed="false">With RingBack</button>
+            </div>
+
+            <div id="panel-today">
+              <p class="ai-answer">For a company that can come this week, <strong>Coastline Air</strong> takes bookings right from here. Your shop appears further down, without a way to book.</p>
+              <div class="shop-row">
+                <div class="avatar">C</div>
+                <div class="shop-meta">
+                  <div class="name">Coastline Air <span class="stars">★★★★★</span></div>
+                  <div class="sub">4.9 · 212 reviews · Books online</div>
+                </div>
+                <span class="book-btn">Book</span>
+              </div>
+              <div class="shop-row">
+                <div class="avatar you">Y</div>
+                <div class="shop-meta">
+                  <div class="name">Your Shop <span class="stars">★★★★☆</span></div>
+                  <div class="sub">4.6 · 23 reviews · Phone only</div>
+                </div>
+                <span class="dead-end">rings out →<br />dead end</span>
+              </div>
+            </div>
+
+            <div id="panel-ringback" class="hidden">
+              <p class="ai-answer">Two solid options can come this week. <strong>Your Shop</strong> — same rating, same reviews — is now booking from here too, through Eve.</p>
+              <div class="shop-row">
+                <div class="avatar you">Y</div>
+                <div class="shop-meta">
+                  <div class="name">Your Shop <span class="stars">★★★★☆</span></div>
+                  <div class="sub">4.6 · 23 reviews · Bookable through Eve</div>
+                </div>
+                <span class="book-btn">Book</span>
+              </div>
+              <div class="shop-row">
+                <div class="avatar">C</div>
+                <div class="shop-meta">
+                  <div class="name">Coastline Air <span class="stars">★★★★★</span></div>
+                  <div class="sub">4.9 · 212 reviews · Books online</div>
+                </div>
+                <span class="book-btn">Book</span>
+              </div>
+            </div>
+
+            <p class="demo-foot">Illustration of how Google&rsquo;s AI answers are starting to look — names are stand-ins. Flip the switch: same shop, same rating, same 23 reviews. The only thing that changed is whether the customer can book it.</p>
+          </div>
+        </div>
       </div>
-      <div class="card">        <h3>Eve (add-on)</h3>
-        <ul class="checks">
-          <li>Missed-call textback on your business number</li>
-          <li>Answers customer questions by text, 24/7</li>
-          <li>Captures the job details and alerts you instantly</li>
-          <li>Live on our own line — try her above before you buy</li>
-        </ul>
+
+      <!-- ============ LIVE DEMO — HIGH ON THE PAGE ============ -->
+      <section id="demo" style="padding:34px 0 4px" aria-label="Call Eve on the live demo line">
+        <div class="wrap">
+          <div class="demo-strip">
+            <div>
+              <span class="lbl">Live demo line — call any time</span>
+              <span class="num"><a href="tel:+18057653761">(805) 765-3761</a></span>
+            </div>
+            <p>Don&rsquo;t just read about Eve — hear her. Call the line, let it ring through, and she texts you back and asks the same three questions she&rsquo;d ask your customer. No staged recording, no sales rep on the line.</p>
+            <a class="call-btn" href="tel:+18057653761">Call Eve now</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ TRADES ============ -->
+      <section aria-label="Who RingBack is built for">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="kicker">Built for owner-run shops</p>
+            <h2>You&rsquo;re on the job.</h2>
+            <p class="lede">RingBack is built for the shops Google is about to skip: no office staff, no fancy website, an owner who answers when he can and loses the job when he can&rsquo;t. We&rsquo;re rooted in San Luis Obispo County — and that&rsquo;s our home, not a fence. Eve answers by phone and text, so the check, the pilot, and the build work the same for a shop one county over or across the country.</p>
+          </div>
+          <div class="trades reveal">
+            <figure class="trade">
+              <img src="assets/painter.png" alt="Painter standing on a ladder painting the upper trim of a house" loading="lazy" />
+              <figcaption>
+                <span class="t">Painters</span>
+                <p>Exterior season is short. The shop Google books first paints while the others are still playing phone tag.</p>
+              </figcaption>
+            </figure>
+            <figure class="trade">
+              <img src="assets/plumber.jpg" alt="Plumber tightening a fitting under a kitchen sink with a red wrench" loading="lazy" />
+              <figcaption>
+                <span class="t">Plumbers</span>
+                <p>A burst pipe doesn&rsquo;t wait for a callback. Whoever can be booked in the answer gets the emergency — and the margin.</p>
+              </figcaption>
+            </figure>
+            <figure class="trade">
+              <img src="assets/hvac.jpg" alt="HVAC technician servicing a wall-mounted air conditioning unit" loading="lazy" />
+              <figcaption>
+                <span class="t">HVAC</span>
+                <p>When the AC dies at 2 PM in August, the customer books the first name the AI offers. Being second is the same as being closed.</p>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ STATS — EVE SQUARES ============ -->
+      <section id="stats" style="padding-top:10px" aria-label="What Eve does">
+        <div class="wrap">
+          <div class="stats-grid reveal">
+            <div class="stat-card">
+              <span class="big">Day or night</span>
+              <span class="lbl">Eve is set up to answer missed calls day or night — nights, weekends, holidays, and while you&rsquo;re on a job.</span>
+            </div>
+            <div class="stat-card">
+              <span class="big">Usually seconds</span>
+              <span class="lbl">A text usually goes back to a missed caller within seconds of the ring-out — at 2 PM or 2 AM.</span>
+            </div>
+            <div class="stat-card">
+              <span class="big">3 questions</span>
+              <span class="lbl">Callers are asked the same three qualifying questions: what service they need, where they are, and when they need it.</span>
+            </div>
+            <div class="stat-card">
+              <span class="big">Call summaries</span>
+              <span class="lbl">The owner gets a summary email of the conversations Eve handles — who called, what they need, and what happened next.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CHECK ============ -->
+      <section class="checker-band" id="check">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="kicker">The free check</p>
+            <h2>Found &amp; Bookable: where does your shop stand?</h2>
+            <p class="lede">Answer a few honest questions about your shop and see the shape of your standing. The real check goes further — we ask Google&rsquo;s AI about your trade in your town, trace your booking path to the very end, check ChatGPT for a business profile in your name, and email you the one-page rundown.</p>
+          </div>
+          <div class="checker reveal">
+            <form class="panel" id="checker-form">
+              <div class="field">
+                <label for="f-trade">Your trade</label>
+                <select id="f-trade">
+                  <option value="painter">Painting</option>
+                  <option value="plumber">Plumbing</option>
+                  <option value="hvac">HVAC</option>
+                  <option value="other">Another home service</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f-profile">Your Google Business Profile
+                  <span class="hint">The free listing that shows your shop on Google Maps and in search.</span>
+                </label>
+                <select id="f-profile">
+                  <option value="complete">Claimed, and filled out completely</option>
+                  <option value="partial">Claimed, but patchy — missing photos, hours, or services</option>
+                  <option value="unclaimed">Never claimed it / not sure</option>
+                  <option value="none">I don&rsquo;t think I have one</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f-reviews">Google reviews, roughly</label>
+                <select id="f-reviews">
+                  <option value="many">30 or more</option>
+                  <option value="some">10 to 29</option>
+                  <option value="few">Fewer than 10</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f-chatgpt">Your ChatGPT business profile
+                  <span class="hint">When customers ask ChatGPT for a shop like yours, it may show a business profile — claimed or not.</span>
+                </label>
+                <select id="f-chatgpt">
+                  <option value="claimed">Claimed and verified — facts and logo are current</option>
+                  <option value="unclaimed">A profile exists, but I haven&rsquo;t claimed it</option>
+                  <option value="none">No profile that I know of</option>
+                  <option value="unsure">Not sure — never checked</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f-rail">How can a customer actually book you?
+                  <span class="hint">Not &ldquo;contact you&rdquo; — finish a booking.</span>
+                </label>
+                <select id="f-rail">
+                  <option value="platform">Online booking — Jobber, Housecall Pro, or similar</option>
+                  <option value="eve">Eve answers my missed calls and books by text</option>
+                  <option value="callback">They leave a message and I call back when I can</option>
+                  <option value="none">Honestly — if I miss the call, the job is gone</option>
+                </select>
+              </div>
+              <button class="btn" type="submit" style="width:100%">See my standing</button>
+            </form>
+
+            <div class="panel" aria-live="polite">
+              <div id="result-idle">
+                <h3 style="margin-bottom:10px">Your answers show up here</h3>
+                <p style="color:var(--ink-soft);font-size:15.5px">Every check — the quick version here, and the full one we run by hand — comes down to these questions:</p>
+                <div style="margin-top:14px">
+                  <div class="result-row"><span class="q">Does Google&rsquo;s AI name your shop?</span><span class="chip warn">?</span></div>
+                  <div class="result-row"><span class="q">Can the customer finish booking?</span><span class="chip warn">?</span></div>
+                  <div class="result-row"><span class="q">Is your ChatGPT profile claimed?</span><span class="chip warn">?</span></div>
+                </div>
+                <p style="color:var(--ink-soft);font-size:14.5px;margin-top:16px">Being found without being bookable is a brochure. Being bookable without being named is a secret. And an unclaimed ChatGPT profile is a listing someone else controls. You need all three handled.</p>
+              </div>
+              <div id="result-scan" class="hidden">
+                <p class="scanning">Checking your standing<span class="cursor"></span></p>
+                <p class="scanning" style="margin-top:10px" id="scan-step">Reading your Google profile&hellip;</p>
+              </div>
+              <div id="result-done" class="hidden"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CHATGPT CHECK — ADDED NOV 11 ============ -->
+      <section id="chatgpt">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="kicker"><span class="new-badge" aria-label="New">NEW</span>Added to every audit</p>
+            <h2>ChatGPT is naming shops too. Is yours claimed?</h2>
+            <p class="lede">Customers don&rsquo;t only ask Google anymore. ChatGPT can show a business profile for your shop — whether you claimed it or not. We check it at every level for one honest reason: accuracy and control, never a ranking promise.</p>
+          </div>
+          <div class="trio reveal">
+            <div class="piece">
+              <span class="n">FREE FIRST LOOK</span>
+              <h3>Exists · Claimed — one line</h3>
+              <p>The free one-pager carries one ChatGPT line alongside the Google verdict: does a profile exist for your shop, and is it claimed?</p>
+            </div>
+            <div class="piece">
+              <span class="n">PAID AUDIT</span>
+              <h3>Its own section, separate from the 90</h3>
+              <p>The full audit keeps its 90 Google checks frozen and reports ChatGPT separately: exists · claimed · facts &amp; logo current · claim path viable.</p>
+            </div>
+            <div class="piece">
+              <span class="n">FOUNDATION</span>
+              <h3>Claim + verify, guided end to end</h3>
+              <p>Foundation includes the claim itself: domain verification, business details, and facts/logo cleanup. The government-ID step stays in your hands — we walk you through it.</p>
+            </div>
+          </div>
+          <div class="honest-box reveal">
+            <span class="t">What claiming does — and doesn&rsquo;t — do</span>
+            <p><strong>Claiming gives you accuracy, control, and insights. It does not buy a ranking</strong>, and we won&rsquo;t sell it as one. RingBack claimed its own profile the same way.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ EVE ============ -->
+      <section id="eve">
+        <div class="wrap">
+          <div class="eve-grid">
+            <div class="reveal">
+              <p class="kicker">Eve · The bridge</p>
+              <h2>Not on Jobber or Housecall Pro? Eve makes you bookable anyway.</h2>
+              <p class="lede" style="margin-top:14px;color:var(--ink-soft);font-size:18px">Google&rsquo;s booking links only flow through the big platforms — and most owner-run shops aren&rsquo;t on any of them. Eve is the bridge: when a call rings out, she usually texts the customer back within seconds, asks the three questions that matter, and books the job. No app to learn. No system to replace.</p>
+              <div style="margin-top:10px">
+                <div class="step">
+                  <span class="n">1</span>
+                  <div>
+                    <h3>The call rings out</h3>
+                    <p>You&rsquo;re under a house, on a ladder, in an attic. The customer is already dialing the next shop — that&rsquo;s the moment Eve works in.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <span class="n">2</span>
+                  <div>
+                    <h3>She texts back and qualifies</h3>
+                    <p>What&rsquo;s the job? Where? When do you need it? The same three questions you&rsquo;d ask — asked the same way, usually within seconds, at 2 PM or 2 AM.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <span class="n">3</span>
+                  <div>
+                    <h3>The job gets booked, you get the summary</h3>
+                    <p>The appointment lands on the calendar and a summary lands in your email: new lead captured, who, what, where, when. You just show up and do the work.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="owner-note">
+                <span class="t">What lands in your inbox</span>
+                &ldquo;New lead captured by Eve — Status: Complete.&rdquo; Name, job, town, and the time booked. No lead dies in a voicemail box again.
+              </div>
+            </div>
+
+            <div class="reveal">
+              <div class="phone" role="img" aria-label="Illustrated text conversation: Eve texts back a missed caller, asks three questions, and books the job">
+                <div class="phone-screen">
+                  <div class="phone-head">
+                    <div class="who">Eve · RingBack textback</div>
+                    <div class="sub">● ANSWERING FOR YOUR SHOP</div>
+                  </div>
+                  <p class="sysline">Missed call · (805) 555-0119 · 2:41 PM</p>
+                  <p class="msg eve">Hi, this is Eve at your local AC shop — sorry we missed your call. What&rsquo;s going on with your system?</p>
+                  <p class="msg cust">AC quit blowing cold. House is up to 88.</p>
+                  <p class="msg eve">Sorry to hear it — we can help. What part of town are you in?</p>
+                  <p class="msg cust">Near downtown, just off Main Street.</p>
+                  <p class="msg eve">Last one: tomorrow morning or afternoon better for a tech?</p>
+                  <p class="msg cust">Morning if you&rsquo;ve got it.</p>
+                  <p class="msg eve">Booked — tomorrow, 9&ndash;11 AM. You&rsquo;ll get a confirmation text shortly, and the shop has everything you told me.</p>
+                  <p class="sysline">Job booked · Summary sent to the owner</p>
+                </div>
+              </div>
+              <p style="font-size:13px;color:var(--ink-soft);margin-top:12px;text-align:center">Illustrative conversation. The number is a stand-in — the flow is Eve&rsquo;s real one.</p>
+            </div>
+          </div>
+
+          <div class="calc reveal" id="calculator">
+            <h3>Missed-call cost calculator — use your own numbers</h3>
+            <p class="sub">The fields start with <strong>starting assumptions</strong> — 5 missed calls a week, a $650 average job, a 30% close rate — just so the math has something to run on. Replace them with <strong>your</strong> numbers: your missed calls, your average job, your close rate. We don&rsquo;t promise them. The math is shown in full so you can check it.</p>
+            <div class="calc-grid">
+              <div>
+                <div class="field" style="margin-bottom:18px">
+                  <label for="mc-missed">Your missed calls per week</label>
+                  <input type="number" id="mc-missed" min="0" max="200" step="1" value="5" inputmode="numeric" />
+                  <span class="hint" style="font-size:13.5px;color:var(--ink-soft)">Calls you know rang out while you were on a job, after hours, or on another line. Starts at 5 — a starting assumption, not your number until you set it.</span>
+                </div>
+                <div class="field" style="margin-bottom:18px">
+                  <label for="mc-value">Your average job value ($)</label>
+                  <input type="number" id="mc-value" min="0" max="50000" step="50" value="650" inputmode="numeric" />
+                  <span class="hint" style="font-size:13.5px;color:var(--ink-soft)">Starts at $650 — a starting assumption. Set your real average.</span>
+                </div>
+                <div class="field" style="margin-bottom:0">
+                  <label for="mc-close">Your close rate (%)</label>
+                  <input type="number" id="mc-close" min="0" max="100" step="1" value="30" inputmode="numeric" />
+                  <span class="hint" style="font-size:13.5px;color:var(--ink-soft)">Of the callers you do talk to, roughly what share become paying jobs? Starts at 30% — a starting assumption.</span>
+                </div>
+              </div>
+              <div class="calc-out">
+                <span class="big" id="mc-line">About 6.5 jobs walking away each month</span>
+                <p id="mc-sub">That&rsquo;s your estimate, from your numbers — not a RingBack promise.</p>
+              </div>
+            </div>
+            <div class="calc-results" aria-live="polite">
+              <div class="calc-result"><span class="v" id="mc-jobs">6.5</span><span class="k">Estimated jobs walking away per month</span></div>
+              <div class="calc-result"><span class="v" id="mc-month">$4,225</span><span class="k">Estimated dollars left on the table per month</span></div>
+              <div class="calc-result"><span class="v" id="mc-year">$50,700</span><span class="k">Estimated dollars left on the table per year</span></div>
+            </div>
+            <p class="calc-estimate-note"><span class="t">Estimate only</span>This is an estimate worked out from your own numbers — it is not a promise of jobs or revenue.</p>
+            <p class="calc-formula">The formula, openly: missed calls/week &times; 4.33 weeks = missed calls/month &middot; &times; your close rate = jobs walking away/month &middot; &times; your average job value = dollars/month (&times; 12 = dollars/year). If your inputs are off, the result is off — that&rsquo;s why they&rsquo;re yours to set.</p>
+            <div style="margin-top:20px">
+              <a class="btn" href="https://tally.so/r/BEaDAK" target="_blank" rel="noopener">Get the free Found &amp; Bookable check</a>
+              <p style="font-size:14px;color:var(--ink-soft);margin-top:10px">Free check first. No meeting required to start.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ OFFERS ============ -->
+      <section class="checker-band" id="offers">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="kicker">How it works</p>
+            <h2>Four rungs. Start free.</h2>
+            <p class="lede">Start with the free check. Climb only if the rung below earns it. No meeting required to start, and no pitch call unless you ask for one.</p>
+          </div>
+          <div class="reveal">
+            <div class="rung">
+              <span class="step-lbl">Start here</span>
+              <div>
+                <h3>Found &amp; Bookable Check</h3>
+                <p class="desc">We ask Google&rsquo;s AI about your trade in your town, trace your booking path to the very end, and score the basics — plus one ChatGPT line: does a profile exist, and is it claimed? You get the one-page rundown by email.</p>
+              </div>
+              <div class="price"><span class="amt">Free</span><span class="per">ONE PAGE · BY EMAIL</span></div>
+            </div>
+            <div class="rung">
+              <span class="step-lbl">Step 1 · Diagnose</span>
+              <div>
+                <h3>The Audit</h3>
+                <p class="desc">The full 90-point scorecard, bookability layer included, with the fix list in the order that matters — plus a separate ChatGPT section.</p>
+                <p class="note">Credited in full toward Foundation if you build with us.</p>
+              </div>
+              <div class="price"><span class="amt">Audit</span><span class="per">ONE-TIME · DETAILS BY EMAIL</span></div>
+            </div>
+            <div class="rung">
+              <span class="step-lbl">Step 2 · Build</span>
+              <div>
+                <h3>Foundation</h3>
+                <p class="desc">We do the build for you: Google profile cleanup, ChatGPT profile claimed, booking rail installed, review engine started.</p>
+              </div>
+              <div class="price"><span class="amt">Build</span><span class="per">ONE-TIME · DETAILS BY EMAIL</span></div>
+            </div>
+            <div class="rung">
+              <span class="step-lbl">Step 3 · Stay picked</span>
+              <div>
+                <h3>Found</h3>
+                <p class="desc">Staying the shop Google names is a monthly job: reviews kept flowing, profile maintained, listings consistent, and Eve answering missed calls so booked jobs stay booked. It&rsquo;s the rung that keeps the other three paying off.</p>
+                <p class="desc" style="margin-top:8px">Found ($397/mo) includes Eve, RingBack's AI front desk: she answers missed calls by text, captures and qualifies the lead, and books the appointment on your calendar — alongside your monthly visibility re-check, fixes, and report.</p>
+              </div>
+              <div class="price"><span class="amt">Monthly</span><span class="per">ONGOING · DETAILS BY EMAIL</span></div>
+            </div>
+            <div class="plan-b">
+              <strong>Rather do it yourself?</strong> The <strong>DIY Roadmap</strong> turns your audit into a step-by-step plan you run yourself. Or take <strong>Lookout</strong> — we watch your standing and flag it when something changes. Ask for details in the free check form — no prices are published on this page.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PILOT AS DEMO + ONBOARDING ============ -->
+      <section id="pilot">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="kicker">Try it on your own calls</p>
+            <h2>The pilot is the demo.</h2>
+            <p class="lede">Start with Eve&rsquo;s live line at the top of this page. The pilot is the same test on your own phone, with your own callers.</p>
+          </div>
+          <div class="pilot-grid reveal">
+            <div class="panel">
+              <h3>The free 14-day pilot</h3>
+              <p style="color:var(--ink-soft);font-size:15.5px;margin-top:8px">Eve answers your actual missed calls on your own number for 14 days, free. The summaries land in your inbox, so you judge her on real calls — not on a pitch.</p>
+              <ul class="onboard-list">
+                <li><strong>Days 1&ndash;14:</strong> free, on your real missed calls.</li>
+                <li><strong>If she earns it:</strong> you decide whether to continue — the terms are confirmed by email before anything is charged.</li>
+                <li><strong>If she doesn&rsquo;t:</strong> you&rsquo;ve lost nothing, and the summaries are yours to keep.</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>How Eve gets set up — no magic, just your details</h3>
+              <p style="color:var(--ink-soft);font-size:15.5px;margin-top:8px">Eve&rsquo;s setup is built from what&rsquo;s already true about your shop, plus the details only you know. Nothing is guessed and nothing goes live until you&rsquo;ve confirmed it by email.</p>
+              <ul class="onboard-list">
+                <li><strong>From your Google Business Profile:</strong> your services, your hours, and your service area — the same facts Google already shows customers.</li>
+                <li><strong>From you, by email:</strong> the details only the owner knows — how you like jobs qualified, what to promise, what never to promise, and where bookings should land.</li>
+                <li><strong>Confirmed before she goes live:</strong> you review the setup by email and approve it. No surprises on a live call.</li>
+                <li><strong>Your number stays yours:</strong> Eve works with your existing number. No new app to learn, no system to replace.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="promise-band reveal" aria-label="How RingBack works">
+            <span>No meetings required</span>
+            <span>No new app</span>
+            <span>Keep your existing number</span>
+            <span>Everything confirmed by email</span>
+          </div>
+          <p class="reveal" style="margin-top:20px;color:var(--ink-soft);font-size:15.5px;max-width:44em">A note on owner stories: the first pilots are just getting started, so there are no owner quotes to print yet — and none will be invented. When a pilot owner has something to say, it will run here in their own words, with their name, trade, and town, and their permission.</p>
+        </div>
+      </section>
+
+      <!-- ============ FAQ ============ -->
+      <section id="faq">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="kicker">Straight answers</p>
+            <h2>Questions every owner asks</h2>
+          </div>
+          <div class="faq reveal">
+            <details>
+              <summary>I&rsquo;m not on Jobber or Housecall Pro. Can I still be bookable?</summary>
+              <p>Yes — that&rsquo;s exactly who Eve is for. The big booking platforms are one rail. Eve is the other: she answers your missed calls by text, qualifies the job, and books it. A shop with no website and five reviews can be just as bookable as a franchise — it just needs a working way to finish the booking.</p>
+            </details>
+            <details>
+              <summary>Do you guarantee Google will pick my shop?</summary>
+              <p>No — and you should walk away from anyone who does. RingBack guarantees only its deliverables: the audit delivered, the fixes done, and Eve&rsquo;s line live and answering. We never guarantee rankings, how often an AI mentions you, or how many jobs you get — AI recommendations are controlled by the AI companies, not by us. What we stand behind is the verifiable work: a clean profile, a booking path that ends in a booking, reviews coming in steady. That&rsquo;s the material the AI picks from.</p>
+            </details>
+            <details>
+              <summary>What does the free check actually get me?</summary>
+              <p>A one-page rundown, by email, answering the questions that matter: does Google&rsquo;s AI name your shop for your trade in your town, can the customer finish booking — or does the trail die at a phone number nobody answered — and one ChatGPT line: does a business profile exist for your shop, and is it claimed? No call, no obligation. If the answer is &ldquo;you&rsquo;re fine,&rdquo; the page says that too.</p>
+            </details>
+            <details>
+              <summary>What&rsquo;s the ChatGPT profile check — and does claiming it rank me higher?</summary>
+              <p>No — claiming is not a ranking lever, and we don&rsquo;t sell it as one. What it buys is accuracy, control, and insights: your profile says what you say it says. The full breakdown is in the ChatGPT check section above.</p>
+            </details>
+            <details>
+              <summary>How much of my time does any of this take?</summary>
+              <p>The check: none — it arrives by email. Foundation: you send the owner-only details by email, we build from them, and you approve the finished setup by email before anything goes live. No meeting, no call on the calendar. Found runs in the background — the only thing that lands on you is Eve&rsquo;s lead summaries, and those are the good kind of interruption.</p>
+            </details>
+            <details>
+              <summary>I already have a website. Isn&rsquo;t that enough?</summary>
+              <p>A website used to be the destination. In an AI answer, it&rsquo;s a footnote — the customer books inside the answer or moves to the next name. Your website still matters as proof you&rsquo;re real, but the jobs are decided one step earlier now: named, or not; bookable, or not.</p>
+            </details>
+            <details>
+              <summary>I&rsquo;m not in San Luis Obispo County. Can I still use RingBack?</summary>
+              <p>Yes — please do. RingBack is based in San Luis Obispo, California, but nothing about the work is local-only. The free check is run for your trade in your town and delivered by email, Eve answers your missed calls by text on your own number wherever you are, and Foundation is built from your Google and ChatGPT profiles — no visit required. Google&rsquo;s AI names shops in every town, so the same standing problem — and the same fix — applies wherever your shop is.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site">
+      <div class="wrap">
+        <div class="frow">
+          <span class="brand" style="display:inline-flex;align-items:center;gap:9px"><img class="brand-logo" src="assets/logo.webp" alt="" width="28" height="28" style="width:28px;height:28px" />RingBack Co.</span>
+          <span>Based in San Luis Obispo, CA · Working with shops anywhere</span>
+          <span>getringbackco@gmail.com</span>
+          <span>Demo line: <a href="tel:+18057653761">(805) 765-3761</a></span>
+          <span>Found &amp; Bookable — for owner-run home-service shops.</span>
+        </div>
+        <nav class="vs-links" aria-label="Cost comparisons">
+          <span style="font-weight:700;color:var(--ink)">Compare the alternatives:</span>
+          <a href="assets/vs-voicemail.html">Eve vs voicemail</a>
+          <a href="assets/vs-answering-service.html">Eve vs an answering service</a>
+          <a href="assets/vs-receptionist.html">Eve vs hiring a receptionist</a>
+          <a href="https://tally.so/r/BEaDAK" target="_blank" rel="noopener">Get the free check</a>
+        </nav>
+        <p class="draft-line">DRAFT — NEW HOMEPAGE FACE · UPDATED NOV 11, 2026 · SIMPLIFIED PASS · NOT YET LIVE</p>
       </div>
-    </div>
-  </section>
-  <!-- FAQ -->
-  <section id="faq" class="faq">
-    <h2>Straight answers</h2>
-    <div style="height:10px"></div>
-    <details>
-      <summary>Do I have to talk to anyone to buy this?</summary>
-      <p>No. The audit, the prices, the signup, and the setup all run online and by text — Eve handles the questions. No Zoom, no webinar, no “strategy session,” no workshop to attend. If you’d rather talk to a person at some point, email us and we’ll set up a time. It’s an option, never a requirement.</p>
-    </details>
-    <details>
-      <summary>How much does it cost?</summary>
-      <p>Run the free audit. Your results show the exact price for your business, before you pay a dime. Why not a price list here? Because the work depends on what the audit finds — a business with a clean profile in a quiet town needs far less than one starting from invisible in a competitive trade, and a flat list would overcharge the first and shortchange the second.</p>
-    </details>
-    <details>
-      <summary>Can you guarantee AI will recommend me?</summary>
-      <p>Nobody honest can guarantee what ChatGPT says — anyone who promises that is selling you something. What we guarantee is the work: the checks run, the fixes done, and a fresh rundown every month showing exactly where you stand. Movement is measured, not promised.</p>
-    </details>
-    <details>
-      <summary>Do you need my passwords?</summary>
-      <p>Never. Google access is granted through a manager invite you control and can revoke any time. No passwords, no shared logins.</p>
-    </details>
-    <details>
-      <summary>Am I locked into a contract?</summary>
-      <p>No long contracts. Monthly service is month-to-month — pause or cancel with short notice. And your website, profiles, and reviews stay yours if you leave. Everything we set up is in your name, not ours.</p>
-    </details>
-    <details>
-      <summary>How fast do I get my audit?</summary>
-      <p>We run the full 90 checks — not a 30-second automated scan — and email your one-pager when it’s done. You’ll also get the free checklist instantly, right on your screen, while you wait.</p>
-    </details>
-    <details>      <summary>Who’s behind RingBack Co.?</summary>
-      <p>A local San Luis Obispo County operator, not a call center and not a national platform. Eve is openly our AI front desk — she never pretends to be a person — and a human reviews every audit before it goes out.</p>
-    </details>
-  </section>
+    </footer>
 
-  <!-- CLOSING CTA -->
-  <section>
-    <div class="proof" style="text-align:center">
-      <div class="big" style="margin-bottom:14px">Find out what AI says about your business — before your next customer asks.</div>
-      <a class="btn" href="https://tally.so/r/BEaDAK">See if AI recommends you — free</a>
-      <p class="micro" style="margin-top:12px">Or text <strong>TEXTBACK</strong> to <strong>(805) 765-3761</strong> and let Eve show you the other half.</p>
-    </div>
-    <div style="height:16px"></div>
-    <div class="quiet">Rather talk to a person first? Email <a href="mailto:getringbackco@gmail.com">getringbackco@gmail.com</a> and ask for a time — you’ll get one. It’s just not required to get started.</div>
-  </section>
+    <script>
+      (function () {
+        "use strict";
 
-</div>
+        /* ---------- hero demo toggle ---------- */
+        var btnToday = document.getElementById("btn-today");
+        var btnRing = document.getElementById("btn-ringback");
+        var panelToday = document.getElementById("panel-today");
+        var panelRing = document.getElementById("panel-ringback");
+        function show(which) {
+          var today = which === "today";
+          btnToday.setAttribute("aria-pressed", String(today));
+          btnRing.setAttribute("aria-pressed", String(!today));
+          panelToday.classList.toggle("hidden", !today);
+          panelRing.classList.toggle("hidden", today);
+        }
+        btnToday.addEventListener("click", function () { show("today"); });
+        btnRing.addEventListener("click", function () { show("ringback"); });
 
-<footer>  <div class="wrap">
-    <p><strong>RingBack Co.</strong> · San Luis Obispo, CA · <a href="mailto:getringbackco@gmail.com">getringbackco@gmail.com</a> · (805) 765-3761</p>
-    <p><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms &amp; Conditions</a> · <a href="optin.html">How text opt-in works</a> · <a href="checklist.html">The AI Visibility Checklist</a></p>
-  </div>
-</footer>
+        /* ---------- missed-call cost calculator (visitor's own numbers) ---------- */
+        var mcMissed = document.getElementById("mc-missed");
+        var mcValue = document.getElementById("mc-value");
+        var mcClose = document.getElementById("mc-close");
+        var mcJobs = document.getElementById("mc-jobs");
+        var mcMonth = document.getElementById("mc-month");
+        var mcYear = document.getElementById("mc-year");
+        var mcLine = document.getElementById("mc-line");
+        var mcSub = document.getElementById("mc-sub");
+        function money(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+        function num(el, fallback) {
+          var v = parseFloat(el.value);
+          if (isNaN(v) || v < 0) return fallback;
+          return v;
+        }
+        function calcCost() {
+          var missedWeek = num(mcMissed, 0);
+          var jobValue = num(mcValue, 0);
+          var closeRate = Math.min(num(mcClose, 0), 100) / 100;
+          var jobsMonth = Math.round(missedWeek * 4.33 * closeRate * 10) / 10;
+          var dollarsMonth = jobsMonth * jobValue;
+          var dollarsYear = dollarsMonth * 12;
+          mcJobs.textContent = jobsMonth.toLocaleString("en-US");
+          mcMonth.textContent = money(dollarsMonth);
+          mcYear.textContent = money(dollarsYear);
+          mcLine.textContent = "About " + jobsMonth.toLocaleString("en-US") + " jobs walking away each month";
+          mcSub.innerHTML = "At your numbers, that&rsquo;s <strong>" + money(dollarsMonth) + " a month</strong> — <strong>" + money(dollarsYear) + " a year</strong> — in work that currently goes to whoever answered first. Your estimate, from your inputs.";
+        }
+        [mcMissed, mcValue, mcClose].forEach(function (el) {
+          el.addEventListener("input", calcCost);
+          el.addEventListener("change", calcCost);
+        });
+        calcCost();
 
-</body>
+        /* ---------- checker ---------- */
+        var form = document.getElementById("checker-form");
+        var idle = document.getElementById("result-idle");
+        var scan = document.getElementById("result-scan");
+        var done = document.getElementById("result-done");
+        var scanStep = document.getElementById("scan-step");
+        var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        var PROFILE = {
+          complete: { chip: "ok", label: "STRONG", why: "Claimed and complete — the AI can name you with confidence." },
+          partial:  { chip: "warn", label: "PATCHY", why: "Claimed, but gaps in photos, hours, or services give the AI reasons to skip you." },
+          unclaimed:{ chip: "bad", label: "UNCLAIMED", why: "An unclaimed profile is a shop Google can&rsquo;t vouch for — rivals get named instead." },
+          none:     { chip: "bad", label: "MISSING", why: "No profile means no name in the answer at all. Fixable, but it&rsquo;s step zero." }
+        };
+        var REVIEWS = {
+          many: { chip: "ok", label: "PROOF ENOUGH", why: "30+ reviews is real weight in an AI answer." },
+          some: { chip: "warn", label: "THIN", why: "10–29 reviews helps, but a rival at 100+ will out-argue you." },
+          few:  { chip: "bad", label: "TOO QUIET", why: "Under 10 reviews, the AI treats you as unproven — however good the work is." }
+        };
+        var RAIL = {
+          platform: { chip: "ok", label: "BOOKABLE", why: "A live booking rail — the customer can finish the job inside the answer." },
+          eve:      { chip: "ok", label: "BOOKABLE", why: "Eve closes the loop by text — bookable without any platform." },
+          callback: { chip: "warn", label: "LEAKY", why: "Callbacks leak: the AI offers a booking, your shop offers a voicemail box." },
+          none:     { chip: "bad", label: "DEAD END", why: "Miss the call, lose the job. Named or not, there&rsquo;s no way to finish." }
+        };
+        var CHATGPT = {
+          claimed:   { chip: "ok", label: "CLAIMED", why: "Claimed and verified — you control the facts and logo ChatGPT shows." },
+          unclaimed: { chip: "warn", label: "UNCLAIMED", why: "A profile exists but nobody owns it — facts can be stale and you get no control or insights." },
+          none:      { chip: "warn", label: "NO PROFILE", why: "No profile found — nothing to claim yet, and nothing working for you when customers ask ChatGPT." },
+          unsure:    { chip: "bad", label: "UNCHECKED", why: "Never checked is the most common answer we see — the free check looks it up for you." }
+        };
+
+        function row(q, r) {
+          return '<div class="result-row"><span class="q">' + q +
+            '<span class="why">' + r.why + '</span></span>' +
+            '<span class="chip ' + r.chip + '">' + r.label + "</span></div>";
+        }
+
+        form.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          var profile = PROFILE[document.getElementById("f-profile").value];
+          var reviews = REVIEWS[document.getElementById("f-reviews").value];
+          var rail = RAIL[document.getElementById("f-rail").value];
+          var chatgptEl = document.getElementById("f-chatgpt");
+          var chatgpt = chatgptEl ? CHATGPT[chatgptEl.value] : CHATGPT.unsure;
+
+          var foundBad = profile.chip === "bad" || reviews.chip === "bad";
+          var foundWarn = profile.chip === "warn" || reviews.chip === "warn";
+          var foundChip = foundBad ? "bad" : (foundWarn ? "warn" : "ok");
+          var foundLabel = foundChip === "ok" ? "LIKELY NAMED" : (foundChip === "warn" ? "HIT OR MISS" : "GETTING SKIPPED");
+
+          var title, body;
+          if (foundChip === "ok" && rail.chip === "ok") {
+            title = "Named, and bookable. You&rsquo;re the shop to beat.";
+            body = "Both halves are in place. The work from here is defense — reviews and consistency are what keep you named as rivals catch on.";
+          } else if (rail.chip !== "ok" && foundChip === "ok") {
+            title = "Google can find you. It just can&rsquo;t book you.";
+            body = "Visibility without a booking path is a brochure: the AI names you, the customer hits voicemail, the job goes to the shop with a Book button. The booking rail is the fix.";
+          } else if (foundChip !== "ok" && rail.chip === "ok") {
+            title = "Bookable — but Google isn&rsquo;t naming you.";
+            body = "Your booking works; almost nobody reaches it. The AI names shops with clean profiles and real review weight. That&rsquo;s profile and review work — the top half of the ladder.";
+          } else {
+            title = "Today, the job goes to someone else.";
+            body = "Both halves are open: the AI has little reason to name you, and no way to book you if it did. The good news — this is the most common standing we see, and every piece of it is fixable work, not luck.";
+          }
+
+          var html =
+            row("Does Google&rsquo;s AI name your shop?", { chip: foundChip, label: foundLabel, why: profile.why + " " + reviews.why }) +
+            row("Can the customer finish booking?", rail) +
+            row("Is your ChatGPT profile claimed?", chatgpt) +
+            '<div class="verdict"><span class="v-title">' + title + "</span>" + body + "</div>" +
+            '<p style="margin-top:16px;font-size:15px;color:var(--ink-soft)">That&rsquo;s the quick read from your answers. The full check tests what Google&rsquo;s AI actually says about your trade in your town — and the rundown is free.</p>' +
+            '<a class="btn" style="margin-top:14px" href="https://tally.so/r/BEaDAK" target="_blank" rel="noopener">Run my real check — free</a>';
+
+          idle.classList.add("hidden");
+          done.classList.add("hidden");
+          if (reduced) {
+            done.innerHTML = html;
+            done.classList.remove("hidden");
+            return;
+          }
+          scan.classList.remove("hidden");
+          var steps = ["Reading your Google profile&hellip;", "Counting your proof&hellip;", "Checking your ChatGPT profile&hellip;", "Tracing your booking path to the end&hellip;"];
+          var i = 0;
+          scanStep.innerHTML = steps[0];
+          var timer = setInterval(function () {
+            i++;
+            if (i < steps.length) {
+              scanStep.innerHTML = steps[i];
+            } else {
+              clearInterval(timer);
+              scan.classList.add("hidden");
+              done.innerHTML = html;
+              done.classList.remove("hidden");
+            }
+          }, 550);
+        });
+
+        /* ---------- reveal on scroll, with a fail-safe so nothing stays hidden ---------- */
+        var els = document.querySelectorAll(".reveal");
+        function revealAll() { els.forEach(function (el) { el.classList.add("in"); }); }
+        if ("IntersectionObserver" in window && !reduced) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+            });
+          }, { threshold: 0.12 });
+          els.forEach(function (el) { io.observe(el); });
+          setTimeout(revealAll, 1600);
+        } else {
+          revealAll();
+        }
+      })();
+    </script>
+  </body>
 </html>
